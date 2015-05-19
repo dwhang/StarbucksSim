@@ -1,0 +1,28 @@
+import java.util.List;
+
+
+public class Hardware {
+    /** the buying cost of each piece of hardware */
+    public double cost;
+    
+    /** the name of the machine */
+    public String name;
+    
+    /** the amount of times this product is used */
+    public int usage;
+    
+    /** the amount that the product can be used before it breaks or runs out */
+    public int usageLimit;
+    
+    public Hardware(String name, int cost, int usage, int usageLimit){
+   	 this.name = name;
+   	 this.cost = cost;
+   	 this.usage = usage;
+   	 this.usageLimit = usageLimit;
+    }
+    
+    public String toString() {
+   	 return name + " has been sold " +  " times";
+    }
+}
+
