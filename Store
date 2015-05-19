@@ -200,6 +200,10 @@ public class Store {
 		amount = 200+gen.nextInt(100)*staff.get(1).employed;
 		return amount;
 	}
+	public void rent(){
+	int rentcost = 25000;
+	this.bank -= rentcost;
+	}
 	public void dailyMaintanace(){
 		this.bank -= staff.get(0).daily*staff.get(0).employed;
 		this.bank -= staff.get(1).daily*staff.get(1).employed;
