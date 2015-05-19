@@ -13,22 +13,33 @@ public class StarbucksSim {
 	public static void main(String[] args) {
 		Store star = new Store(100);
 		int days = 365;
+		int cAmountDay = 0;
+		int cAmountMonth = 0;
+		int cAmountYear = 0;
+		double previousMonths = 0;
 		for (int j = 0; j < days; j++) {
 			star.dailyMaintanace();
-			Customer[] customers = new Customer[star.customerAmount()];
+			cAmountDay = star.customerAmount();
+			Customer[] customers = new Customer[cAmountDay];
+			cAmountMonth += cAmountDay;
+			cAmountDay=0;
 			for (int i = 0; i < customers.length; i++) {
 				customers[i] = new Customer();
 			}
-
 			for (Customer c : customers) {
 				c.placeOrder(star);
 			}
 			if(j%30==0){
-				System.out.println(star.customerAmount());
+				System.out.println("This month, the store has had: " + cAmountMonth + " customers");
+				System.out.println("This month, the store has made: $" + (star.bank-previousMonths));
 				System.out.println(star);
+				System.out.println();
+				cAmountYear += cAmountMonth;
+				cAmountMonth = 0;
+				previousMonths = star.bank;
 			}
 		}
-		System.out.println(star.customerAmount());
-		System.out.println(star);
+		System.out.println("Amount of customers for this year: " + cAmountYear);
+		System.out.println("This year, the store made $" + star);
 	}
 }
