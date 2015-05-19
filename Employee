@@ -1,0 +1,41 @@
+import java.util.List;
+
+
+public class Employee {
+
+	public List<Integer> price;
+
+	/** the cost to pay the employee each day */
+	public int cost;
+
+	/** the tier of the employee */
+	public String tier;
+
+	/** the amount paid in total to this employy */
+	public int employeetotal;
+	/** the number of employees currently employeed*/
+	public int employed;
+	/**limit on the number of possible employees */
+	public int limit;
+	/** amount it costs to hire the employes*/
+	public int tohire;
+	/**amount if costs to pay them daily*/
+	public int daily;
+
+	Employee() {
+	}
+
+	public Employee(String tier, int tohire, int daily, int employed, int limit){
+		this.tier = tier;
+		this.daily = daily;
+		this.employed = employed;
+		this.limit = limit;
+		this.tohire = tohire;
+
+	}
+
+	public String toString() {
+		return " We have paid our employees " + employeetotal;
+	}
+}
+
