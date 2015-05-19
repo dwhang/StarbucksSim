@@ -1,0 +1,33 @@
+import java.util.Random;
+
+public class Customer {
+    /** the amount the customer has paid in his lifetime */
+    public double totalPaid;
+    public double totalCost;
+    /**
+     * pick product from the store's menu.
+     * add cost to totalPaid
+     * @return the product to be placed
+     */
+    public Product placeOrder(Store s) {
+   	 Random gen = new Random();
+   	 //pick product
+   	 int prod = gen.nextInt(3);
+   	 int size = gen.nextInt(3);
+   	 Product tempProd = s.menu.get(prod);
+   	 //add cost to total paid
+   	 totalPaid += tempProd.price.get(size);
+   	 totalCost += tempProd.cost.get(size);
+   	 s.processOrder(prod, size);
+   	 return tempProd;
+    }
+    public String toString() {
+   	 //say how much customer has paid
+   	 return "Customer has paid: " + totalPaid;
+    }
+    public double[] profit(){
+   	 
+   	 return null;
+    }
+}
+
