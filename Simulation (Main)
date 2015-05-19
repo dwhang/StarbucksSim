@@ -7,6 +7,12 @@
  *
  * for two bonus
  *     do something crazy
+ *Bonuses:
+ *Include deterioration of hardware
+ *Add different tiers of employees
+ *		Once a certain amount of money is made add more cashiers and buristas
+ *Depending on the number of buristas/cashiers change how many customers the store can have per day
+ *Add rent per month 
  */
 
 public class StarbucksSim {
