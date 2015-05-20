@@ -18,7 +18,7 @@ public class Store {
 	public double hcosts;
 	/** Employee */
 	public List<Employee> staff = new LinkedList<Employee>();
-
+	//the total costs of employees
 	public double ecosts;
 
 	/**
@@ -50,7 +50,7 @@ public class Store {
 		cost2.add((double) 0.8);
 		cost2.add((double) 1);
 		this.menu.add(new Product("Iced Coffee", price2, cost2));
-		//making caramel mocha macchioto frappichino
+		//making Pumpkin Spiced Latte
 		List<Double> price3 = new LinkedList<Double>();
 		price3.add((double) 3.55);
 		price3.add((double) 4.35);
@@ -60,15 +60,13 @@ public class Store {
 		cost3.add((double) 1.1);
 		cost3.add((double) 1.3);
 		this.menu.add(new Product("Pumpkin Spiced Latte", price3, cost3));
-		//making 
-		
-		
-		
-//		List<Double> price4 = new LinkedList<Double>();
-//		price4.add((double) 3.45);
-//		List<Double> cost4 = new LinkedList<Double>();
-//		cost4.add((double) 2);
-//		this.menu.add(new Product("Ham and Cheese Sandwich", price4, cost4));
+
+		//		//making ham and cheese sandwich
+		//		List<Double> price4 = new LinkedList<Double>();
+		//		price4.add((double) 3.45);
+		//		List<Double> cost4 = new LinkedList<Double>();
+		//		cost4.add((double) 2);
+		//		this.menu.add(new Product("Ham and Cheese Sandwich", price4, cost4));
 		//hardware
 		// declaring coffee grinder
 		this.tools.add(new Hardware("Coffee Grinder", 1000 , 20000, 20000));
@@ -97,6 +95,7 @@ public class Store {
 	 * @param rounds 
 	 */
 	public void processOrder(int p, int s) {
+		//This whole hardware section deals with hardware costs of processing an order
 		Hardware cg = tools.get(0);
 		if(cg.usage==cg.usageLimit){
 			this.bank -= cg.cost;
@@ -139,6 +138,7 @@ public class Store {
 			uni.usage = 0;
 			this.hcosts += uni.cost;
 		}
+		//hires employees if there is not any
 		Employee ca = staff.get(0);
 		if(ca.employed == 0)
 		{
@@ -186,26 +186,25 @@ public class Store {
 			stirrers.usage++;
 			straws.usage++;
 		}
-		//   	 add product to the history
-
-		//   	 if a product is used up, it will be replenished
-
-
-
 	}
+	//returns the total revenue, total amount of money used to pay for hardware and the total amount paid on employees
 	public String toString() {
-		return "Store has made $" + (Math.round(bank)) + " and has spent " + hcosts + " on hardware" + " We spent " + ecosts + " to pay our employees ";
+		return "Store has made $" + (Math.round(bank)) + " and has spent $" + hcosts + " on hardware" + " We spent $" + ecosts + " to pay our employees ";
 	}
+	//determines amount of customers for a day based on the amount of baristas
+	//(basically the amount of people the barista can efficiently serve)
 	public int customerAmount(){
 		int amount;
 		Random gen = new Random();
 		amount = 350+gen.nextInt(200)*staff.get(1).employed;
 		return amount;
 	}
+	//monthly rent
 	public void rent(){
-	int rentcost = 25000;
-	this.bank -= rentcost;
+		int rentcost = 25000;
+		this.bank -= rentcost;
 	}
+	//paying the employees
 	public void dailyMaintanace(){
 		this.bank -= staff.get(0).daily*staff.get(0).employed;
 		this.bank -= staff.get(1).daily*staff.get(1).employed;
