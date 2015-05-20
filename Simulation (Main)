@@ -20,119 +20,143 @@ import java.util.Random;
 
 public class StarbucksSim {
 	public static void main(String[] args) {
-		Random gen = new Random();
-		Store star = new Store(100);
-		//sets the amount of days to the length of a year
-		int days = 365;
-		//amount of customer in a day
-		int cAmountDay = 0;
-		//amount of customer in a month
-		int cAmountMonth = 0;
-		//amount of customer in a year
-		int cAmountYear = 0;
-		//amount spent in winter
-		int winter = 0;
-		//amount spent in summer
-		int summer = 0;
-		//amount spent in fall
-		int fall = 0;
-		//randomly selects which month to start at
-		int month=gen.nextInt(12) + 1;
-		//used to help show the amount earned per month
-		double previousMonths = 0;
-		//runs the program for a year
-		for (int j = 0; j < days; j++) {
-			//allows for the month to be reset to january when it passes december
-			if(month==13){
-				month = 1;
+		int bestOverallMonth = 0;
+		int[] overallMonth = new int[12];
+		for(int y = 0;y<100;y++)
+		{
+			//to figure out when the best time is to open coffee shop
+			int bestMonth = 0;
+			double bestYear = 0;
+			for(int x = 1; x < 13; x++ ){
+				Random gen = new Random();
+				Store star = new Store(100);
+				//sets the amount of days to the length of a year
+				int days = 365;
+				//amount of customer in a day
+				int cAmountDay = 0;
+				//amount of customer in a month
+				int cAmountMonth = 0;
+				//amount of customer in a year
+				int cAmountYear = 0;
+				//amount spent in winter
+				int winter = 0;
+				//amount spent in summer
+				int summer = 0;
+				//amount spent in fall
+				int fall = 0;
+				//runs through 1 year starting at each month
+				int month = x;
+				//used to help show the amount earned per month
+				double previousMonths = 0;
+				//runs the program for a year
+				for (int j = 0; j < days; j++) {
+					//allows for the month to be reset to january when it passes december
+					if(month==13){
+						month = 1;
+					}
+					//pays employees
+					star.dailyMaintanace();
+					//makes the amount of customers based on how many baristas can serve them, decided through function customerAmount
+					cAmountDay = star.customerAmount();
+					//makes the amount of customers that go through that day the previously selected amount
+					Customer[] customers = new Customer[cAmountDay];
+					//adds amount of customers from one day to the total of a month
+					cAmountMonth += cAmountDay;
+					//resets the amount of customers to 0
+					cAmountDay=0;
+					//initializes and creates the predetermined amount of customers
+					for (int i = 0; i < customers.length; i++) {
+						customers[i] = new Customer();
+					}
+					//lets all the customers go through and place orders
+					for (Customer c : customers) {
+						c.placeOrder(star, month);
+					}
+					if(j%30==29){
+						star.rent();
+						//assigns each month a name and a season that affects probability of sales
+						if(month==1){
+							System.out.println("It is January, It is winter");
+							winter += Math.round((star.bank-previousMonths));
+						}
+						else if(month==2){
+							System.out.println("It is February, It is winter");	
+							winter += Math.round((star.bank-previousMonths));
+						}
+						else if(month==3){
+							System.out.println("It is March, It is winter");
+							winter += Math.round((star.bank-previousMonths));
+						}
+						else if(month==4){
+							System.out.println("It is April, It is summer");
+							summer += Math.round((star.bank-previousMonths));
+						}
+						else if(month==5){
+							System.out.println("It is May, It is summer");
+							Math.round((star.bank-previousMonths));
+						}
+						else if(month==6){
+							System.out.println("It is June, It is summer");
+							Math.round((star.bank-previousMonths));
+						}
+						else if(month==7){
+							System.out.println("It is July, It is summer");
+							Math.round((star.bank-previousMonths));
+						}
+						else if(month==8){
+							System.out.println("It is August, It is summer");
+							Math.round((star.bank-previousMonths));
+						}
+						else if(month==9){
+							System.out.println("It is September, It is fall");
+							fall += Math.round((star.bank-previousMonths));
+						}
+						else if(month==10){
+							System.out.println("It is October, It is fall");
+							fall += Math.round((star.bank-previousMonths));
+						}
+						else if(month==11){
+							System.out.println("It is November, It is winter");
+							winter += Math.round((star.bank-previousMonths));
+						}
+						else{
+							System.out.println("It is December, It is winter");	
+							winter += Math.round((star.bank-previousMonths));
+						}
+						System.out.println("This month, the store has had: " + cAmountMonth + " customers");
+						System.out.println("This month, the store has made: $" + Math.round((star.bank-previousMonths)));
+						System.out.println(star);
+						System.out.println();
+						//adds amount of customers from one month to the total of the year
+						cAmountYear += cAmountMonth;
+						//resets the total customers in the month to 0
+						cAmountMonth = 0;
+						//sets the total earnings of this month and all previous months to be used when comparing next month with the previous months
+						previousMonths = star.bank;
+						//makes the next month come
+						month++;
+					}
+				}
+				if(star.bank > bestYear)
+				{
+					bestMonth = x;
+					bestYear = star.bank;
+				}
+				System.out.println("Amount of customers for this year: " + cAmountYear);
+				System.out.println("This year, " + star);
+				System.out.println("The average profit for winter months was " + winter/5);
+				System.out.println("The average profit for summer months was " + summer/5);
+				System.out.println("The average profit for fall months was " + fall/2);
+				System.out.println("---------------------------------------------------------------");
 			}
-			//pays employees
-			star.dailyMaintanace();
-			//makes the amount of customers based on how many baristas can serve them, decided through function customerAmount
-			cAmountDay = star.customerAmount();
-			//makes the amount of customers that go through that day the previously selected amount
-			Customer[] customers = new Customer[cAmountDay];
-			//adds amount of customers from one day to the total of a month
-			cAmountMonth += cAmountDay;
-			//resets the amount of customers to 0
-			cAmountDay=0;
-			//initializes and creates the predetermined amount of customers
-			for (int i = 0; i < customers.length; i++) {
-				customers[i] = new Customer();
-			}
-			//lets all the customers go through and place orders
-			for (Customer c : customers) {
-				c.placeOrder(star, month);
-			}
-			if(j%30==29){
-				star.rent();
-				//assigns each month a name and a season that affects probability of sales
-				if(month==1){
-					System.out.println("It is January, It is winter");
-					winter += Math.round((star.bank-previousMonths));
-				}
-				else if(month==2){
-					System.out.println("It is February, It is winter");	
-					winter += Math.round((star.bank-previousMonths));
-				}
-				else if(month==3){
-					System.out.println("It is March, It is winter");
-					winter += Math.round((star.bank-previousMonths));
-				}
-				else if(month==4){
-					System.out.println("It is April, It is summer");
-					summer += Math.round((star.bank-previousMonths));
-				}
-				else if(month==5){
-					System.out.println("It is May, It is summer");
-					Math.round((star.bank-previousMonths));
-				}
-				else if(month==6){
-					System.out.println("It is June, It is summer");
-					Math.round((star.bank-previousMonths));
-				}
-				else if(month==7){
-					System.out.println("It is July, It is summer");
-					Math.round((star.bank-previousMonths));
-				}
-				else if(month==8){
-					System.out.println("It is August, It is summer");
-					Math.round((star.bank-previousMonths));
-				}
-				else if(month==9){
-					System.out.println("It is September, It is fall");
-					fall += Math.round((star.bank-previousMonths));
-				}
-				else if(month==10){
-					System.out.println("It is October, It is fall");
-					fall += Math.round((star.bank-previousMonths));
-				}
-				else if(month==11){
-					System.out.println("It is November, It is winter");
-					winter += Math.round((star.bank-previousMonths));
-				}
-				else{
-					System.out.println("It is December, It is winter");	
-					winter += Math.round((star.bank-previousMonths));
-				}
-				System.out.println("This month, the store has had: " + cAmountMonth + " customers");
-				System.out.println("This month, the store has made: $" + Math.round((star.bank-previousMonths)));
-				System.out.println(star);
-				System.out.println();
-				//adds amount of customers from one month to the total of the year
-				cAmountYear += cAmountMonth;
-				//resets the total customers in the month to 0
-				cAmountMonth = 0;
-				//sets the total earnings of this month and all previous months to be used when comparing next month with the previous months
-				previousMonths = star.bank;
-				//makes the next month come
-				month++;
+			System.out.println("The best month to start in was the " + bestMonth + " (st/rd/th/nd) month of the year");
+			overallMonth[bestMonth-1]++;
+		}
+		for(int z = 0;z<12;z++){
+			if(overallMonth[z]>bestOverallMonth){
+				bestOverallMonth=z;
 			}
 		}
-		System.out.println("Amount of customers for this year: " + cAmountYear);
-		System.out.println("This year, " + star);
-		System.out.println("The average profit for winter months was " + winter/5);
-		System.out.println("The average profit for summer months was " + summer/5);
-		System.out.println("The average profit for fall months was " + fall/2);
+		System.out.println("Simulation shows that the best month to open your coffee shop is the " + bestOverallMonth + " (st/rd/th/nd) month of the year");
 	}
 }
