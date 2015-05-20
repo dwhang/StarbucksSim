@@ -6,17 +6,24 @@ public class Customer {
     public double totalCost;
     /**
      * pick product from the store's menu.
+     * pick using a probability system based on the month/season
      * add cost to totalPaid
      * @return the product to be placed
      */
     public Product placeOrder(Store s, int month) {
    	 Random gen = new Random();
-   	 //pick product
+   	 //the prob variable is a rondom number thru 0 and 9
    	 int prob = gen.nextInt(10);
+   	 //this is the product which will be determined later using the season based probability system
    	 int prod = 0;
+   	 //selects a random size 0-2
    	 int size = gen.nextInt(3);
+   	 //initializes tempProd which is simply the product that the customer will order
    	Product tempProd = null;
+   	//this is the probability break down if the month is november thru march, aka the season determined to be winter
    	 if(month>=11 || month<=3){
+   	 //this makes it a 8:10 chance that the customer will select chai
+   	 //1:10 for the other drinks
    		 if(prob==1){
    		   	 tempProd = s.menu.get(1);
    		   	 prod = 1;
@@ -30,7 +37,10 @@ public class Customer {
    		   	 prod = 0;
    		 }
    	 }
+   	//this is the probability break down if the month is april thru august, aka the season determined to be summer
    	 if(8>=month && month>=4){
+   	 //this makes it a 8:10 chance that the customer will select iced coffee
+   	 //1:10 for the other drinks
    		 if(prob==1){
    		   	 tempProd = s.menu.get(0);
    		   	 prod = 0;
@@ -44,7 +54,10 @@ public class Customer {
    		   	 prod = 1;
    		 }
    	 }
+   	//this is the probability break down if the month is september thru october, aka the season determined to be fall
    	 if(month>=9 && month<=10){
+   	 //this makes it a 8:10 chance that the customer will select Pumpkin Spiced Latte
+   	 //1:10 for the other drinks
    		 if(prob==1){
    		   	 tempProd = s.menu.get(0);
    		   	 prod = 0;
