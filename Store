@@ -30,7 +30,7 @@ public class Store {
 		//set bank
 		this.bank = bank;
 		//products
-		//making chai
+		//hot chai
 		List<Double> price1 = new LinkedList<Double>();
 		price1.add((double) 3.15);
 		price1.add((double) 3.65);
@@ -39,27 +39,57 @@ public class Store {
 		cost1.add((double) .6);
 		cost1.add((double) 1);
 		cost1.add((double) 1.2);
-		this.menu.add(new Product("Chai", price1, cost1));
-		//making hot coffee
+		this.menu.add(new Product("Hot Chai", price1, cost1));
+		//iced chai
 		List<Double> price2 = new LinkedList<Double>();
-		price2.add((double) 2.95);
+		price2.add((double) 2.90);
+		price2.add((double) 3.40);
 		price2.add((double) 3.75);
-		price2.add((double) 4.25);
 		List<Double> cost2 = new LinkedList<Double>();
-		cost2.add((double) 0.4);
-		cost2.add((double) 0.8);
+		cost2.add((double) .5);
+		cost2.add((double) .8);
 		cost2.add((double) 1);
-		this.menu.add(new Product("Iced Coffee", price2, cost2));
-		//making Pumpkin Spiced Latte
+		this.menu.add(new Product("Iced Chai", price2, cost2));
+		//hot coffee
 		List<Double> price3 = new LinkedList<Double>();
-		price3.add((double) 3.55);
-		price3.add((double) 4.35);
-		price3.add((double) 4.65);
+		price3.add((double) 2.95);
+		price3.add((double) 3.65);
+		price3.add((double) 4.00);
 		List<Double> cost3 = new LinkedList<Double>();
-		cost3.add((double) .7);
-		cost3.add((double) 1.1);
-		cost3.add((double) 1.3);
-		this.menu.add(new Product("Pumpkin Spiced Latte", price3, cost3));
+		cost3.add((double) 0.4);
+		cost3.add((double) 0.7);
+		cost3.add((double) .9);
+		this.menu.add(new Product("Hot Coffee", price3, cost3));
+		//Iced coffee
+		List<Double> price4 = new LinkedList<Double>();
+		price4.add((double) 3.15);
+		price4.add((double) 3.80);
+		price4.add((double) 4.25);
+		List<Double> cost4 = new LinkedList<Double>();
+		cost4.add((double) 0.5);
+		cost4.add((double) 0.8);
+		cost4.add((double) 1);
+		this.menu.add(new Product("Iced Coffee", price4, cost4));
+		//Pumpkin Spiced Latte
+		List<Double> price5 = new LinkedList<Double>();
+		price5.add((double) 3.85);
+		price5.add((double) 4.35);
+		price5.add((double) 4.65);
+		List<Double> cost5 = new LinkedList<Double>();
+		cost5.add((double) .7);
+		cost5.add((double) 1.1);
+		cost5.add((double) 1.3);
+		this.menu.add(new Product("Pumpkin Spiced Latte", price5, cost5));
+		//Peppermint Latte
+		List<Double> price6 = new LinkedList<Double>();
+		price6.add((double) 3.55);
+		price6.add((double) 4.25);
+		price6.add((double) 4.45);
+		List<Double> cost6 = new LinkedList<Double>();
+		cost6.add((double) .7);
+		cost6.add((double) 1.);
+		cost6.add((double) 1.2);
+		this.menu.add(new Product("Peppermint Latte", price6, cost6));
 
 		//		//making ham and cheese sandwich
 		//		List<Double> price4 = new LinkedList<Double>();
