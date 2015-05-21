@@ -1,14 +1,20 @@
 import java.util.Random;
 /**
  *
- * @author student
+ * @author Julian and Dylan
  *
  * for one bonus
  *     change the code a little bit
  *
+ *First question: 
+ *How much does the average store make?
  * for two bonus
  *     do something crazy
  *Bonuses:
+ *What is the best month to open the store?
+ *	- Start at each month and see the overall profit (do this with a for loop)
+ *	- Use a while loop to run the 12 year process 25 times and each time that month is the best add it to the count
+ *	- Determine the best year overall to start the shop by seeing which was the best to start the most.
  *Include deterioration of hardware
  *Add different tiers of employees
  *	Once a certain amount of money is made add more cashiers and buristas
@@ -22,7 +28,7 @@ public class StarbucksSim {
 	public static void main(String[] args) {
 		int bestOverallMonth = 0;
 		int[] overallMonth = new int[12];
-		for(int y = 0;y<100;y++)
+		for(int y = 0; y<25; y++) //run it for 50 years to increase accuracy
 		{
 			//to figure out when the best time is to open coffee shop
 			int bestMonth = 0;
@@ -142,21 +148,22 @@ public class StarbucksSim {
 					bestMonth = x;
 					bestYear = star.bank;
 				}
-				System.out.println("Amount of customers for this year: " + cAmountYear);
+				System.out.println("Amount of customers for this year: " + cAmountYear);//amount of customers per year
 				System.out.println("This year, " + star);
-				System.out.println("The average profit for winter months was " + winter/5);
-				System.out.println("The average profit for summer months was " + summer/5);
-				System.out.println("The average profit for fall months was " + fall/2);
+				System.out.println("The average profit for winter months was " + winter/5); //average winter profit for each year
+				System.out.println("The average profit for summer months was " + summer/5); //average summer profit for each year
+				System.out.println("The average profit for fall months was " + fall/2); //average fall profit for each year
 				System.out.println("---------------------------------------------------------------");
 			}
-			System.out.println("The best month to start in was the " + bestMonth + " (st/rd/th/nd) month of the year");
+			System.out.println("The best month to start in was the " + bestMonth + " (st/rd/th/nd) month of the year"); //best month to start each year
 			overallMonth[bestMonth-1]++;
 		}
-		for(int z = 0;z<12;z++){
+		for(int z = 0;z<12;z++){ //determine what the best month to start is
 			if(overallMonth[z]>bestOverallMonth){
 				bestOverallMonth=z;
 			}
 		}
-		System.out.println("Simulation shows that the best month to open your coffee shop is the " + bestOverallMonth + " (st/rd/th/nd) month of the year");
+		System.out.println("Simulation shows that the best month to open your coffee shop is the " + bestOverallMonth + " (st/rd/th/nd) month of the year"); //best month to start for whole time
 	}
+}
 }
