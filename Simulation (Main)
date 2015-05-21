@@ -8,8 +8,7 @@ import java.util.Random;
  *
  *First question: 
  *How much does the average store make?
- * for two bonus
- *     do something crazy
+ *    
  *Bonuses:
  *What is the best month to open the store?
  *	- Start at each month and see the overall profit (do this with a for loop)
@@ -21,6 +20,10 @@ import java.util.Random;
  *Depending on the number of buristas/cashiers change how many customers the store can have per day
  *Add rent per month 
  *
+ *ToDo:
+ *offer discounts
+ *	- increasing popularity while decreasing prices
+ *	- what is the margin for decrease to maximizes profits
  *  
  */
 
@@ -143,6 +146,7 @@ public class StarbucksSim {
 						month++;
 					}
 				}
+				//if the amount of money made this year is the highest made, the program records the starting month and the amount
 				if(star.bank > bestYear)
 				{
 					bestMonth = x;
@@ -165,5 +169,4 @@ public class StarbucksSim {
 		}
 		System.out.println("Simulation shows that the best month to open your coffee shop is the " + bestOverallMonth + " (st/rd/th/nd) month of the year"); //best month to start for whole time
 	}
-}
 }
