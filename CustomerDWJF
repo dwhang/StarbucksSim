@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Customer {
+public class CustomerDWJF {
 	/** the amount the customer has paid in his lifetime */
 	public double totalPaid;
 	public double totalCost;
@@ -10,7 +10,7 @@ public class Customer {
 	 * add cost to totalPaid
 	 * @return the product to be placed
 	 */
-	public Product placeOrder(Store s, int month) {
+	public ProductDWJF placeOrder(StoreDWJF s, int month) {
 		Random gen = new Random();
 		//the prob variable is a rondom number thru 0 and 9
 		int prob = gen.nextInt(100);
@@ -19,7 +19,7 @@ public class Customer {
 		//selects a random size 0-2
 		int size = gen.nextInt(3);
 		//initializes tempProd which is simply the product that the customer will order
-		Product tempProd = null;
+		ProductDWJF tempProd = null;
 		//this is the probability break down if the month is november or january thru march, aka the season determined to be winter
 		if(month==11 || month<=3){
 			//50% chance hot coffee
