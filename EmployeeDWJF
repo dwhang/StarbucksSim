@@ -1,7 +1,7 @@
 import java.util.List;
 
 
-public class Employee {
+public class EmployeeDWJF {
 
 	public List<Integer> price;
 
@@ -22,10 +22,10 @@ public class Employee {
 	/**amount if costs to pay them daily*/
 	public int daily;
 
-	Employee() {
+	EmployeeDWJF() {
 	}
 
-	public Employee(String tier, int tohire, int daily, int employed, int limit){
+	public EmployeeDWJF(String tier, int tohire, int daily, int employed, int limit){
 		this.tier = tier;
 		this.daily = daily;
 		this.employed = employed;
@@ -38,4 +38,3 @@ public class Employee {
 		return " We have paid our employees " + employeetotal;
 	}
 }
-
