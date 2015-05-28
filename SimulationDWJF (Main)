@@ -27,7 +27,7 @@ import java.util.Random;
  *  
  */
 
-public class StarbucksSim {
+public class StarbucksSimDWJF {
 	public static void main(String[] args) {
 		int bestOverallMonth = 0;
 		int[] overallMonth = new int[12];
@@ -38,7 +38,7 @@ public class StarbucksSim {
 			double bestYear = 0;
 			for(int x = 1; x < 13; x++ ){
 				Random gen = new Random();
-				Store star = new Store(100);
+				StoreDWJF star = new StoreDWJF(100);
 				//sets the amount of days to the length of a year
 				int days = 365;
 				//amount of customer in a day
@@ -68,17 +68,17 @@ public class StarbucksSim {
 					//makes the amount of customers based on how many baristas can serve them, decided through function customerAmount
 					cAmountDay = star.customerAmount();
 					//makes the amount of customers that go through that day the previously selected amount
-					Customer[] customers = new Customer[cAmountDay];
+					CustomerDWJF[] customers = new CustomerDWJF[cAmountDay];
 					//adds amount of customers from one day to the total of a month
 					cAmountMonth += cAmountDay;
 					//resets the amount of customers to 0
 					cAmountDay=0;
 					//initializes and creates the predetermined amount of customers
 					for (int i = 0; i < customers.length; i++) {
-						customers[i] = new Customer();
+						customers[i] = new CustomerDWJF();
 					}
 					//lets all the customers go through and place orders
-					for (Customer c : customers) {
+					for (CustomerDWJF c : customers) {
 						c.placeOrder(star, month);
 					}
 					if(j%30==29){
